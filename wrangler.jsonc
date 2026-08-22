@@ -8,7 +8,7 @@
     {
       "binding": "DB",
       "database_name": "five-a-week",
-      "database_id": "00000000-0000-4000-8000-000000000000",
+      "database_id": "00af6d5a-35da-43f1-bf84-27b6a112ab8c",
       "migrations_dir": "drizzle"
     }
   ]
