@@ -37,19 +37,19 @@ test("server-renders the weekly challenge tracker", async () => {
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape/i);
 });
 
-test("shared tracker replaces the starter preview", async () => {
-  const [page, layout, packageJson, apiRoute, hosting] = await Promise.all([
+test("shared tracker is configured for standalone Cloudflare hosting", async () => {
+  const [page, layout, packageJson, apiRoute, wrangler] = await Promise.all([
     readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/layout.tsx", import.meta.url), "utf8"),
     readFile(new URL("../package.json", import.meta.url), "utf8"),
     readFile(new URL("../app/api/challenge/route.ts", import.meta.url), "utf8"),
-    readFile(new URL("../.openai/hosting.json", import.meta.url), "utf8"),
+    readFile(new URL("../wrangler.jsonc", import.meta.url), "utf8"),
   ]);
 
   assert.match(page, /FIVE\/WEEK/);
   assert.match(layout, /Armon vs Victor/);
   assert.match(apiRoute, /challenge_settings/);
-  assert.match(hosting, /"d1": "DB"/);
+  assert.match(wrangler, /"binding": "DB"/);
   assert.doesNotMatch(page, /localStorage/);
   assert.doesNotMatch(page, /SkeletonPreview|codex-preview/);
   assert.doesNotMatch(packageJson, /react-loading-skeleton/);

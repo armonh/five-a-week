@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 
 export async function generateMetadata(): Promise<Metadata> {
   const requestHeaders = await headers();
-  const host = requestHeaders.get("x-forwarded-host") ?? requestHeaders.get("host") ?? "five-week-challenge.arhaghighi.chatgpt.site";
+  const host = requestHeaders.get("x-forwarded-host") ?? requestHeaders.get("host") ?? "five-a-week.workers.dev";
   const protocol = requestHeaders.get("x-forwarded-proto") ?? (host.includes("localhost") ? "http" : "https");
   const origin = `${protocol}://${host}`;
   const title = "FIVE/WEEK — Armon vs Victor";
